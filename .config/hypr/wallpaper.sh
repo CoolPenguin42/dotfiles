@@ -14,7 +14,13 @@ use_wallpaper() {
   pkill -USR2 cava 2>/dev/null
   killall waybar
   waybar &
-  source ~/.cache/wal/colors.sh && cp -r $wallpaper ~/wallpapers/pywallpaper.jpg
+  source ~/.cache/wal/colors.sh && cp -r $wallpaper ~/wallpapers/pywallpaper.jpg && cp -r $wallpaper /usr/share/sddm/themes/sddm-astronaut-theme/Backgrounds/pywallpaper.jpg
+  
+  # source color file to set vars. loop over the template, eval each env, then write out to deployed version
+  source ~/.cache/wal/colors.sh
+  while IFS= read -r line; do
+    eval "echo \"$line\""
+  done < /usr/share/sddm/themes/sddm-astronaut-theme/Themes/hyprlock.template.conf  > /usr/share/sddm/themes/sddm-astronaut-theme/Themes/hyprlock.conf
 }
 main() {
     cat $HOME/.cache/wal/colors-kitty.conf > /tmp/prev_wallpaper

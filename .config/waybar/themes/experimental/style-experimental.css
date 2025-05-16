@@ -87,7 +87,6 @@ tooltip {
     color: transparent;
     border: none;
     background: alpha(@background,.5) ;
-
 }
 #workspaces button.empty:hover {
     color: rgba(0,0,0,0);
